@@ -1,0 +1,29 @@
+var heightDiff = 1;
+var widthDiff = 1;  
+var dicElement = new Object(); 
+for(var i = 0; i < screen.height; i += heightDiff)
+{ 
+    console.log("i --> " + i);
+    var minHeight = -1;
+    for(var j =0; j < screen.width; j += widthDiff)
+    {
+        console.log("j --> " + j);
+        var ele = document.elementFromPoint(i,j);
+        if(ele)
+        {
+//             console.log(ele);
+            console.log("found element at --> " + i + ", " + j);
+            widthDiff = ele.offsetWidth;
+            dicElement[ele] = 1;   
+            if(minHeight == -1)
+                minHeight = ele.offsetHeight;
+            else if(minHeight > ele.offsetHeight)
+                minHeight = ele.offsetHeight;   
+        }
+    if(minHeight != -1) heightDiff = minHeight;    
+    } 
+}
+for(var item in dicElement)
+{
+    console.log(dicElement[item]);
+}
